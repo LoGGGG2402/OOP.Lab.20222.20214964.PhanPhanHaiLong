@@ -1,3 +1,5 @@
+package Lab01;
+
 import  javax.swing.JOptionPane;
 public class Solve {
     public static void main(String[] args) {

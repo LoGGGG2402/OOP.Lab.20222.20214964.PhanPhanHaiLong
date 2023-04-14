@@ -1,3 +1,5 @@
+package Lab01;
+
 import java.util.Scanner;
 public class NumberStar {
     public static void main(String args[]){
