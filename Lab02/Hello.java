@@ -1,2 +1,3 @@
-package Lab02;public class Hello {
+package Lab02;
+public class Hello {
 }
