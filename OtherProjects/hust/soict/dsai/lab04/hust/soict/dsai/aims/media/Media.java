@@ -1,6 +1,15 @@
 package OtherProjects.hust.soict.dsai.lab04.hust.soict.dsai.aims.media;
 
+import OtherProjects.hust.soict.dsai.lab04.hust.soict.dsai.aims.compare.MediaComparatorByCostTitle;
+import OtherProjects.hust.soict.dsai.lab04.hust.soict.dsai.aims.compare.MediaComparatorByTitleCost;
+
+import java.util.Comparator;
+
 public abstract class Media{
+
+    public static final Comparator<Media> COMPARE_BY_TITLE_COST = new MediaComparatorByTitleCost();
+
+    public static final Comparator<Media> COMPARE_BY_COST_TITLE = new MediaComparatorByCostTitle();
     private int id;
     private String title;
     private String category;
@@ -50,6 +59,11 @@ public abstract class Media{
 
     @Override
     public String toString() {
-        return super.toString();
+        return "Media{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", category='" + category + '\'' +
+                ", cost=" + cost +
+                '}';
     }
 }

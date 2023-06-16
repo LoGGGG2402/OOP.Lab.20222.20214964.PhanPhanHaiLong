@@ -44,5 +44,17 @@ public abstract class Disc extends Media implements Playable{
         setCost(cost);
     }
 
+    @Override
+    public String toString() {
+        return "Disc{" +
+                "id=" + getId() +
+                ", title='" + getTitle() + '\'' +
+                ", category='" + getCategory() + '\'' +
+                ", cost=" + getCost() +
+                ", length=" + length +
+                ", director='" + director + '\'' +
+                '}';
+    }
+
 
 }

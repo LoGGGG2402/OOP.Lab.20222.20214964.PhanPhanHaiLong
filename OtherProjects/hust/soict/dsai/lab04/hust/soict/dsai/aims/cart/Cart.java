@@ -4,6 +4,7 @@ import OtherProjects.hust.soict.dsai.lab04.hust.soict.dsai.aims.media.DigitalVid
 import OtherProjects.hust.soict.dsai.lab04.hust.soict.dsai.aims.media.Media;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Cart {
     public static final int MAX_NUMBERS_ORDERED = 20;
@@ -23,6 +24,7 @@ public class Cart {
                 return;
             }
             itemsOrdered.add(media);
+            itemsOrdered.sort(Media.COMPARE_BY_TITLE_COST);
             System.out.println("The media has been added");
         } else {
             System.out.println("The cart is almost full");
@@ -31,14 +33,11 @@ public class Cart {
 
     public void removeMedia(Media media) {
         if (itemsOrdered.size() > 0) {
-            for (Media item : itemsOrdered) {
-                if (item.equals(media)) {
-                    itemsOrdered.remove(item);
-                    System.out.println("The media has been removed");
-                    return;
-                }
+            if (!itemsOrdered.contains(media)) {
+                System.out.println("The media is not in the cart");
+                return;
             }
-            System.out.println("The media is not in the cart");
+            itemsOrdered.remove(media);
         } else {
             System.out.println("The cart is empty");
         }
@@ -65,8 +64,47 @@ public class Cart {
         return null;
     }
 
+    public void filterMediaByTitle(String title) {
+        boolean found = false;
+        for (Media item : itemsOrdered) {
+            if (item.getTitle().contains(title)) {
+                System.out.println(item.toString());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No media found");
+        }
+    }
 
+    public void filterMediaById(int id) {
+        boolean found = false;
+        for (Media item : itemsOrdered) {
+            if (item.getId() == id) {
+                System.out.println(item.toString());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No media found");
+        }
+    }
 
+    public void sortByCost() {
+        itemsOrdered.sort(Media.COMPARE_BY_COST_TITLE);
+    }
 
+    public void sortByTitle() {
+        itemsOrdered.sort(Media.COMPARE_BY_TITLE_COST);
+    }
+
+    public void placeOrder() {
+        if (itemsOrdered.size() > 0) {
+            System.out.println("Order placed");
+            itemsOrdered.clear();
+        } else {
+            System.out.println("The cart is empty");
+        }
+    }
 
 }
