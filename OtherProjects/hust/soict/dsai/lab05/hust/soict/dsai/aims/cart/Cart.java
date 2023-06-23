@@ -2,12 +2,15 @@ package OtherProjects.hust.soict.dsai.lab05.hust.soict.dsai.aims.cart;
 
 import OtherProjects.hust.soict.dsai.lab05.hust.soict.dsai.aims.media.DigitalVideoDisc;
 import OtherProjects.hust.soict.dsai.lab05.hust.soict.dsai.aims.media.Media;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
 public class Cart {
     public static final int MAX_NUMBERS_ORDERED = 20;
-    private final ArrayList<Media> itemsOrdered = new ArrayList<>(MAX_NUMBERS_ORDERED);
+    private final ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
 
 
     public float totalCost() {
@@ -104,6 +107,36 @@ public class Cart {
         } else {
             System.out.println("The cart is empty");
         }
+    }
+
+    public ObservableList<Media> getItemsOrdered() {
+        return itemsOrdered;
+    }
+
+    // filter by id
+    public ObservableList<Media> filterById(String id) {
+        ObservableList<Media> result = FXCollections.observableArrayList();
+        for (Media item : itemsOrdered) {
+            if (String.valueOf(item.getId()).contains(id)) {
+                result.add(item);
+            }
+        }
+        return result;
+    }
+
+    // filter by title
+    public ObservableList<Media> filterByTitle(String title) {
+        ObservableList<Media> result = FXCollections.observableArrayList();
+        for (Media item : itemsOrdered) {
+            if (item.getTitle().toLowerCase().contains(title.toLowerCase())) {
+                result.add(item);
+            }
+        }
+        return result;
+    }
+
+    public void clear() {
+        itemsOrdered.clear();
     }
 
 }
