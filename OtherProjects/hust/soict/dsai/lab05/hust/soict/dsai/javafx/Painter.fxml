@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1"
+            fx:controller="OtherProjects.hust.soict.dsai.lab05.hust.soict.dsai.javafx.PainterController">
+    <padding>
+        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+    </padding>
+    <left>
+        <VBox maxHeight="1.7976931348623157E308" spacing="8.0" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets right="8.0"/>
+            </BorderPane.margin>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clearButtonPressed"
+                    text="Clear"/>
+            <TitledPane animated="false" prefHeight="83.0" prefWidth="78.0" text="untitled">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="62.0" prefWidth="115.0">
+                    <RadioButton layoutY="5.0" mnemonicParsing="false" onAction="#pen" prefWidth="117.0" selected="true"
+                                 text="Pen">
+                        <toggleGroup>
+                            <ToggleGroup fx:id="choose"/>
+                        </toggleGroup>
+                    </RadioButton>
+                    <RadioButton layoutY="30.0" mnemonicParsing="false" onAction="#eraser" text="Eraser"
+                                 toggleGroup="$choose"/>
+                </AnchorPane>
+            </TitledPane>
+        </VBox>
+    </left>
+   <center>
+       <Pane fx:id="drawingAreaPane" onMouseDragged="#drawingAreaMouseDragged" prefHeight="200.0" prefWidth="200.0"
+             style="-fx-background-color: white;" BorderPane.alignment="CENTER"/>
+   </center>
+</BorderPane>
