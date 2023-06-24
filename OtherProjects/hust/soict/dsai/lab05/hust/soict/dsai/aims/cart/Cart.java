@@ -2,11 +2,8 @@ package OtherProjects.hust.soict.dsai.lab05.hust.soict.dsai.aims.cart;
 
 import OtherProjects.hust.soict.dsai.lab05.hust.soict.dsai.aims.media.DigitalVideoDisc;
 import OtherProjects.hust.soict.dsai.lab05.hust.soict.dsai.aims.media.Media;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import java.util.ArrayList;
 
 public class Cart {
     public static final int MAX_NUMBERS_ORDERED = 20;

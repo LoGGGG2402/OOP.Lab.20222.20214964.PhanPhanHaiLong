@@ -11,6 +11,8 @@ import java.util.ArrayList;
 public class StoreScreen extends JFrame {
     private final Store store;
     private final Cart cart;
+    private final JFrame cartScreen;
+
 
     JPanel createNorth(){
         JPanel north = new JPanel();
@@ -283,6 +285,12 @@ public class StoreScreen extends JFrame {
     public StoreScreen(Store store, Cart cart) {
         this.cart = cart;
         this.store = store;
+        cartScreen = new CartScreen(cart, store, StoreScreen.this);
+        cartScreen.setSize(1024, 768);
+        cartScreen.setLocationRelativeTo(null);
+        cartScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        cartScreen.setVisible(false);
+
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
 
@@ -306,14 +314,7 @@ public class StoreScreen extends JFrame {
 
     private void viewCart() {
         setVisible(false);
-        // Show cart
-        CartScreen cartScreen = new CartScreen(cart, store);
         cartScreen.setVisible(true);
-        cartScreen.setSize(1024, 768);
-        cartScreen.setLocationRelativeTo(null);
-
-        cartScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     }
 
 
