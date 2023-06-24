@@ -12,7 +12,7 @@ import javax.swing.*;
 
 public class CartScreen extends JFrame {
 
-    public CartScreen(Cart cart, Store store, JFrame storeScreen) {
+    public CartScreen(Cart cart, JFrame storeScreen) {
         super();
 
         JFXPanel panel = new JFXPanel();
@@ -28,7 +28,7 @@ public class CartScreen extends JFrame {
 
                     System.out.println(loader);
 
-                    loader.setController(new CartScreenController(cart, store, CartScreen.this, storeScreen));
+                    loader.setController(new CartScreenController(cart,CartScreen.this, storeScreen));
 
                     Parent root = loader.load();
 

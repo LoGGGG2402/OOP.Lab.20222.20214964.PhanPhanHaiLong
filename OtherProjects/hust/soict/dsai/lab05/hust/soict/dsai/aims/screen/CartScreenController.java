@@ -49,7 +49,7 @@ public class CartScreenController {
     @FXML
     private TableColumn<Media, String> colMediaTitle;
 
-    public CartScreenController(Cart cart, Store store, JFrame cartScreen, JFrame storeScreen) {
+    public CartScreenController(Cart cart, JFrame cartScreen, JFrame storeScreen) {
         this.cartScreen = cartScreen;
         this.storeScreen = storeScreen;
         this.cart = cart;

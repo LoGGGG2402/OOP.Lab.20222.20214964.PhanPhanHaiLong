@@ -285,7 +285,7 @@ public class StoreScreen extends JFrame {
     public StoreScreen(Store store, Cart cart) {
         this.cart = cart;
         this.store = store;
-        cartScreen = new CartScreen(cart, store, StoreScreen.this);
+        cartScreen = new CartScreen(cart, StoreScreen.this);
         cartScreen.setSize(1024, 768);
         cartScreen.setLocationRelativeTo(null);
         cartScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
