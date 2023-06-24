@@ -28,141 +28,170 @@ public class StoreScreen extends JFrame {
         JMenu menu = new JMenu("Options");
 
         JMenu smUpdateStore = new JMenu("Update Store");
-        smUpdateStore.add(new JMenuItem("Add Book")
-        {
+        smUpdateStore.add(new JMenuItem("Add Book") {
             {
                 addActionListener(e -> {
-                    JFrame frame = new JFrame();
-                    frame.setLayout(new GridLayout(4, 2));
+                    JFrame frame = new JFrame("Add Book");
                     frame.setSize(500, 300);
-                    frame.setVisible(true);
+                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    frame.setLocationRelativeTo(null);
+                    frame.setLayout(new BorderLayout());
 
-                    frame.add(new JLabel("Title"));
+                    JPanel panel = new JPanel(new GridLayout(4, 2, 10, 10));
+                    panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+                    panel.add(new JLabel("Title"));
                     JTextField title = new JTextField();
-                    frame.add(title);
+                    panel.add(title);
 
-                    frame.add(new JLabel("Category"));
+                    panel.add(new JLabel("Category"));
                     JTextField category = new JTextField();
-                    frame.add(category);
+                    panel.add(category);
 
-                    frame.add(new JLabel("Cost"));
+                    panel.add(new JLabel("Cost"));
                     JTextField cost = new JTextField();
-                    frame.add(cost);
+                    panel.add(cost);
 
-                    frame.add(new JLabel("Authors (separated by comma)"));
+                    panel.add(new JLabel("Authors (separated by comma)"));
                     JTextField authors = new JTextField();
-                    frame.add(authors);
+                    panel.add(authors);
 
-                    frame.add(new JButton("Add")
-                    {
-                        {
-                            addActionListener(e -> {
-                                String[] authorsArray = authors.getText().split(",");
-                                Book book = new Book(title.getText(), category.getText(), Float.parseFloat(cost.getText()), authorsArray[0]);
-                                for (int i = 1; i < authorsArray.length; i++) {
-                                    book.addAuthor(authorsArray[i]);
-                                }
-                                store.addMedia(book);
-                                frame.dispose();
-                                reloadCenter();
-                            });
+                    JButton addButton = new JButton("Add");
+                    addButton.addActionListener(e1 -> {
+                        String[] authorsArray = authors.getText().split(",");
+                        Book book = new Book(title.getText(), category.getText(), Float.parseFloat(cost.getText()), authorsArray[0]);
+                        for (int i = 1; i < authorsArray.length; i++) {
+                            book.addAuthor(authorsArray[i]);
                         }
+                        store.addMedia(book);
+                        frame.dispose();
+                        reloadCenter();
                     });
 
+                    JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+                    buttonPanel.add(addButton);
+
+                    frame.add(panel, BorderLayout.CENTER);
+                    frame.add(buttonPanel, BorderLayout.SOUTH);
+
+                    frame.setVisible(true);
                 });
             }
         });
-        smUpdateStore.add(new JMenuItem("Add CD")
-        {
+
+        smUpdateStore.add(new JMenuItem("Add CD") {
             {
                 addActionListener(e -> {
-                    JFrame frame = new JFrame();
-                    frame.setLayout(new GridLayout(4, 2));
-                    frame.setSize(500, 300);
-                    frame.setVisible(true);
+                    JFrame frame = new JFrame("Add CD");
+                    frame.setSize(500, 400);
+                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    frame.setLocationRelativeTo(null);
+                    frame.setLayout(new BorderLayout());
 
-                    frame.add(new JLabel("Director"));
+                    JPanel panel = new JPanel(new GridLayout(6, 2, 10, 10));
+                    panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+                    panel.add(new JLabel("Director"));
                     JTextField director = new JTextField();
-                    frame.add(director);
+                    panel.add(director);
 
-                    frame.add(new JLabel("Category"));
+                    panel.add(new JLabel("Category"));
                     JTextField category = new JTextField();
-                    frame.add(category);
+                    panel.add(category);
 
-                    frame.add(new JLabel("Title"));
+                    panel.add(new JLabel("Title"));
                     JTextField title = new JTextField();
-                    frame.add(title);
+                    panel.add(title);
 
-                    frame.add(new JLabel("Length"));
+                    panel.add(new JLabel("Length"));
                     JTextField length = new JTextField();
-                    frame.add(length);
+                    panel.add(length);
 
-                    frame.add(new JLabel("Cost"));
+                    panel.add(new JLabel("Cost"));
                     JTextField cost = new JTextField();
-                    frame.add(cost);
+                    panel.add(cost);
 
-                    frame.add(new JLabel("Artists"));
+                    panel.add(new JLabel("Artists"));
                     JTextField artists = new JTextField();
-                    frame.add(artists);
+                    panel.add(artists);
 
-                    frame.add(new JButton("Add")
-                    {
-                        {
-                            addActionListener(e -> {
-                                if (artists.getText().isEmpty())
-                                    store.addMedia(new CompactDisc(director.getText(), title.getText(), category.getText(), Integer.parseInt(length.getText()), Float.parseFloat(cost.getText())));
-                                else {
-                                    store.addMedia(new CompactDisc(director.getText(), title.getText(), category.getText(), Integer.parseInt(length.getText()), Float.parseFloat(cost.getText()), artists.getText()));
-                                }
-                                frame.dispose();
-                                reloadCenter();
-                            });
+                    JButton addButton = new JButton("Add");
+                    addButton.addActionListener(e1 -> {
+                        CompactDisc cd;
+                        if (artists.getText().isEmpty()) {
+                            cd = new CompactDisc(director.getText(), title.getText(), category.getText(),
+                                    Integer.parseInt(length.getText()), Float.parseFloat(cost.getText()));
+                        } else {
+                            cd = new CompactDisc(director.getText(), title.getText(), category.getText(),
+                                    Integer.parseInt(length.getText()), Float.parseFloat(cost.getText()), artists.getText());
                         }
+                        store.addMedia(cd);
+                        frame.dispose();
+                        reloadCenter();
                     });
 
+                    JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+                    buttonPanel.add(addButton);
+
+                    frame.add(panel, BorderLayout.CENTER);
+                    frame.add(buttonPanel, BorderLayout.SOUTH);
+
+                    frame.setVisible(true);
                 });
             }
         });
-        smUpdateStore.add(new JMenuItem("Add DVD")
-        {
+        smUpdateStore.add(new JMenuItem("Add DVD") {
             {
                 addActionListener(e -> {
-                    JFrame frame = new JFrame();
-                    frame.setLayout(new GridLayout(4, 2));
+                    JFrame frame = new JFrame("Add DVD");
                     frame.setSize(500, 300);
-                    frame.setVisible(true);
+                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    frame.setLocationRelativeTo(null);
+                    frame.setLayout(new BorderLayout());
 
-                    frame.add(new JLabel("Director"));
+                    JPanel panel = new JPanel(new GridLayout(5, 2, 10, 10));
+                    panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+                    panel.add(new JLabel("Director"));
                     JTextField director = new JTextField();
-                    frame.add(director);
+                    panel.add(director);
 
-                    frame.add(new JLabel("Category"));
+                    panel.add(new JLabel("Category"));
                     JTextField category = new JTextField();
-                    frame.add(category);
+                    panel.add(category);
 
-                    frame.add(new JLabel("Title"));
+                    panel.add(new JLabel("Title"));
                     JTextField title = new JTextField();
-                    frame.add(title);
+                    panel.add(title);
 
-                    frame.add(new JLabel("Length"));
+                    panel.add(new JLabel("Length"));
                     JTextField length = new JTextField();
-                    frame.add(length);
+                    panel.add(length);
 
-                    frame.add(new JLabel("Cost"));
+                    panel.add(new JLabel("Cost"));
                     JTextField cost = new JTextField();
-                    frame.add(cost);
+                    panel.add(cost);
 
-                    frame.add(new JButton("Add")
-                    {
-                        {
-                            addActionListener(e -> {
-                                store.addMedia(new DigitalVideoDisc(director.getText(), title.getText(), category.getText(), Integer.parseInt(length.getText()), Float.parseFloat(cost.getText())));
-                                frame.dispose();
-                                reloadCenter();
-                            });
-                        }
+                    JButton addButton = new JButton("Add");
+                    addButton.addActionListener(e1 -> {
+                        store.addMedia(new DigitalVideoDisc(
+                                director.getText(),
+                                title.getText(),
+                                category.getText(),
+                                Integer.parseInt(length.getText()),
+                                Float.parseFloat(cost.getText())
+                        ));
+                        frame.dispose();
+                        reloadCenter();
                     });
 
+                    JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER)); // Panel chứa nút Add
+                    buttonPanel.add(addButton);
+
+                    frame.add(panel, BorderLayout.CENTER); // Thêm panel vào vị trí trung tâm của frame
+                    frame.add(buttonPanel, BorderLayout.SOUTH); // Thêm buttonPanel vào vị trí dưới cùng của frame
+
+                    frame.setVisible(true);
                 });
             }
         });
@@ -298,13 +327,14 @@ public class StoreScreen extends JFrame {
         cp.add(crateCenter(), BorderLayout.CENTER);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        setLocationRelativeTo(null);
         setVisible(true);
+
         setTitle("Store");
         setSize(1024, 768);
     }
 
-    void reloadCenter() {
+    private void reloadCenter() {
         getContentPane().removeAll();
         getContentPane().add(createNorth(), BorderLayout.NORTH);
         getContentPane().add(crateCenter(), BorderLayout.CENTER);
@@ -317,40 +347,9 @@ public class StoreScreen extends JFrame {
         cartScreen.setVisible(true);
     }
 
-
-
-    public static void main(String[] args) {
-        Store store = new Store();
-
-
-        Book book1 = new Book("The Lion King", "Animation", 19.95f, "Roger Allers");
-        Book book2 = new Book("Star Wars", "Science Fiction", 24.95f, "George Lucas");
-        Book book3 = new Book("Aladdin", "Animation", 18.99f, "John Musker");
-
-        // directory/category/title/length/cost
-        DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King1", "Animation", "Roger Allers", 87, 19.95f);
-        DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wa1rs", "Science Fiction", "George Lucas", 124, 24.95f);
-        DigitalVideoDisc dvd3 = new DigitalVideoDisc("Alad11din", "Animation", "John Musker", 90, 18.99f);
-
-        store.addMedia(book1);
-        store.addMedia(book2);
-        store.addMedia(book3);
-        store.addMedia(dvd1);
-        store.addMedia(dvd2);
-        store.addMedia(dvd3);
-
-        CompactDisc cd1 = new CompactDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
-        CompactDisc cd2 = new CompactDisc("Star Wars", "Science Fiction", "George Lucas", 124, 24.95f);
-        CompactDisc cd3 = new CompactDisc("Aladdin", "Animation", "Jo111usker", 90, 18.99f);
-        cd3.addTrack(new Track("Track 1", 4));
-        cd3.addTrack(new Track("Track 2", 5));
-        cd3.addTrack(new Track("Track 3", 6));
-        cd3.addTrack(new Track("Track 4", 7));
-
-        store.addMedia(cd1);
-        store.addMedia(cd2);
-        store.addMedia(cd3);
-
-        new StoreScreen(store, new Cart());
+    public void addMedia(Media media) {
+        store.addMedia(media);
+        reloadCenter();
     }
+
 }
