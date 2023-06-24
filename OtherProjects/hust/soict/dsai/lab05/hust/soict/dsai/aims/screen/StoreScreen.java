@@ -319,38 +319,4 @@ public class StoreScreen extends JFrame {
 
 
 
-    public static void main(String[] args) {
-        Store store = new Store();
-
-
-        Book book1 = new Book("The Lion King", "Animation", 19.95f, "Roger Allers");
-        Book book2 = new Book("Star Wars", "Science Fiction", 24.95f, "George Lucas");
-        Book book3 = new Book("Aladdin", "Animation", 18.99f, "John Musker");
-
-        // directory/category/title/length/cost
-        DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King1", "Animation", "Roger Allers", 87, 19.95f);
-        DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wa1rs", "Science Fiction", "George Lucas", 124, 24.95f);
-        DigitalVideoDisc dvd3 = new DigitalVideoDisc("Alad11din", "Animation", "John Musker", 90, 18.99f);
-
-        store.addMedia(book1);
-        store.addMedia(book2);
-        store.addMedia(book3);
-        store.addMedia(dvd1);
-        store.addMedia(dvd2);
-        store.addMedia(dvd3);
-
-        CompactDisc cd1 = new CompactDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
-        CompactDisc cd2 = new CompactDisc("Star Wars", "Science Fiction", "George Lucas", 124, 24.95f);
-        CompactDisc cd3 = new CompactDisc("Aladdin", "Animation", "Jo111usker", 90, 18.99f);
-        cd3.addTrack(new Track("Track 1", 4));
-        cd3.addTrack(new Track("Track 2", 5));
-        cd3.addTrack(new Track("Track 3", 6));
-        cd3.addTrack(new Track("Track 4", 7));
-
-        store.addMedia(cd1);
-        store.addMedia(cd2);
-        store.addMedia(cd3);
-
-        new StoreScreen(store, new Cart());
-    }
 }
